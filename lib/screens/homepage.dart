@@ -13,19 +13,19 @@ class HomePageState extends State<HomePage> {
     Transaction(
       id: 'id1',
       title: "Shirt",
-      amount: 255.99,
+      amount: 3000,
       date: DateTime.now(),
     ),
     Transaction(
       id: 'id2',
       title: "Shoes",
-      amount: 125.99,
+      amount: 1250,
       date: DateTime.now(),
     ),
     Transaction(
       id: 'id1',
       title: "Bag",
-      amount: 155.99,
+      amount: 1550,
       date: DateTime.now(),
     ),
   ];
@@ -52,7 +52,49 @@ class HomePageState extends State<HomePage> {
           Column(
             children: transactions.map((tx) {
               return Card(
-                child: Text(tx.title),
+                child: Row(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 15,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.green,
+                          width: 2,
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(13),
+                      child: Text(
+                        '₹ ' + tx.amount.toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tx.title,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                          ),
+                        ),
+                        Text(
+                          tx.date.toString(),
+                          style: const TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               );
             }).toList(),
           )
