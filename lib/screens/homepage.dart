@@ -1,5 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:expense_planner/model/transactioModel.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,7 +41,7 @@ class HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
@@ -47,6 +50,33 @@ class HomePageState extends State<HomePage> {
               elevation: 10,
               color: Colors.blue,
               child: Text('CHART!'),
+            ),
+          ),
+          Card(
+            elevation: 6,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                const TextField(
+                  decoration: InputDecoration(
+                    label: Text('Amount'),
+                  ),
+                ),
+                const TextField(
+                  decoration: InputDecoration(
+                    label: Text('Title'),
+                  ),
+                ),
+                FlatButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Add Transaction',
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Column(
@@ -86,7 +116,7 @@ class HomePageState extends State<HomePage> {
                           ),
                         ),
                         Text(
-                          tx.date.toString(),
+                          DateFormat().format(tx.date),
                           style: const TextStyle(
                             color: Colors.grey,
                           ),
