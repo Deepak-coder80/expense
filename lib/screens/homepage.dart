@@ -1,5 +1,5 @@
-// ignore_for_file: deprecated_member_use
-
+import 'package:expense_planner/widgets/new_transaction.dart';
+import 'package:expense_planner/widgets/user_transaction.dart';
 import 'package:flutter/material.dart';
 import '../widgets/transaction_list.dart';
 
@@ -11,8 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,38 +31,7 @@ class HomePageState extends State<HomePage> {
               child: Text('CHART!'),
             ),
           ),
-          Card(
-            elevation: 6,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                TextField(
-                  controller: titleController,
-                  decoration: const InputDecoration(
-                    label: Text('Title'),
-                  ),
-                ),
-                TextField(
-                  controller: amountController,
-                  decoration: const InputDecoration(
-                    label: Text('Amout'),
-                  ),
-                ),
-                FlatButton(
-                  onPressed: () {
-                    print(titleController.text);
-                  },
-                  child: const Text(
-                    'Add Transaction',
-                    style: TextStyle(
-                      color: Colors.red,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const TransactionList(),
+          const UserTransactions(),
         ],
       ),
     );
