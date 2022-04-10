@@ -1,8 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:expense_planner/model/transactioModel.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import '../widgets/transaction_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,26 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  final List<Transaction> transactions = [
-    Transaction(
-      id: 'id1',
-      title: "Shirt",
-      amount: 3000,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 'id2',
-      title: "Shoes",
-      amount: 1250,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 'id1',
-      title: "Bag",
-      amount: 1550,
-      date: DateTime.now(),
-    ),
-  ];
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,18 +38,22 @@ class HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const TextField(
-                  decoration: InputDecoration(
-                    label: Text('Amount'),
-                  ),
-                ),
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  controller: titleController,
+                  decoration: const InputDecoration(
                     label: Text('Title'),
                   ),
                 ),
+                TextField(
+                  controller: amountController,
+                  decoration: const InputDecoration(
+                    label: Text('Amout'),
+                  ),
+                ),
                 FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    print(titleController.text);
+                  },
                   child: const Text(
                     'Add Transaction',
                     style: TextStyle(
@@ -79,55 +64,7 @@ class HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          Column(
-            children: transactions.map((tx) {
-              return Card(
-                child: Row(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 15,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.green,
-                          width: 2,
-                        ),
-                      ),
-                      padding: const EdgeInsets.all(13),
-                      child: Text(
-                        '₹ ' + tx.amount.toString(),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.red,
-                        ),
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          tx.title,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
-                          ),
-                        ),
-                        Text(
-                          DateFormat().format(tx.date),
-                          style: const TextStyle(
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              );
-            }).toList(),
-          )
+          const TransactionList(),
         ],
       ),
     );
