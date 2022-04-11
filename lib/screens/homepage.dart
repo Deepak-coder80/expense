@@ -16,6 +16,7 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expense'),
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
         elevation: 0.0,
         centerTitle: true,
       ),
@@ -33,6 +34,11 @@ class HomePageState extends State<HomePage> {
           ),
           const UserTransactions(),
         ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
       ),
     );
   }
